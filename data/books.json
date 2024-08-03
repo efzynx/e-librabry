@@ -1,0 +1,50 @@
+[
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "cover": "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "harga": "120000"
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "cover": "https://upload.wikimedia.org/wikipedia/commons/7/7a/The_Great_Gatsby_Cover_1925_Retouched.jpg",
+    "harga": "150000"
+  },
+  {
+    "title": "Sofies Verden",
+    "author": "Jostein Gaarderr",
+    "cover": "https://upload.wikimedia.org/wikipedia/id/a/a8/Duniasophie-cover-inggris.JPG",
+    "harga": "200000"
+  },
+  {
+    "title": "172 Days",
+    "author": "Nadzira Syafa",
+    "cover": "https://cdn.gramedia.com/uploads/items/172_Days.jpg",
+    "harga": "172000"
+  },
+  {
+    "title": "Heart Break",
+    "author": "Ika Natassa",
+    "cover": "https://cdn.gramedia.com/uploads/items/heartbreak_motel_cov_a2uK3fK.jpg",
+    "harga": "76000"
+  },
+  {
+    "title": "Dilan 1990",
+    "author": "Pidi Baiq",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/1/1b/Poster_dilan.jpg",
+    "harga": "500000"
+  },
+  {
+    "title": "Dilan 1991",
+    "author": "Pidi Baiq",
+    "cover": "https://upload.wikimedia.org/wikipedia/en/c/cc/Dilan_1991_Film_Poster.jpg",
+    "harga": "405000"
+  },
+  {
+    "title": "indonesia",
+    "author": "fauzan",
+    "cover": "https://upload.wikimedia.org/wikipedia/id/1/11/Tentang_Kamu_sampul.jpeg",
+    "harga": "12000000"
+  }
+]
