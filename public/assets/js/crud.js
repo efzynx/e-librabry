@@ -14,8 +14,8 @@ $(document).ready(function() {
                             <td>${book.author}</td>
                             <td>${book.harga}</td>
                             <td>
-                                <button class="btn btn-warning btn-sm edit-book" data-title="${book.title}">Edit</button>
-                                <button class="btn btn-danger btn-sm delete-book" data-title="${book.title}">Delete</button>
+                                <button class="btn btn-warning btn-sm edit-book" data-id="${book._id}">Edit</button>
+                                <button class="btn btn-danger btn-sm delete-book" data-id="${book._id}">Delete</button>
                             </td>
                         </tr>
                     `);
@@ -23,20 +23,20 @@ $(document).ready(function() {
 
                 // Menangani klik pada tombol Edit
                 $('.edit-book').on('click', function() {
-                    const title = $(this).data('title');
-                    const book = data.find(b => b.title === title);
+                    const bookId = $(this).data('id');
+                    const book = data.find(b => b._id === bookId);
                     $('#editTitle').val(book.title);
                     $('#editAuthor').val(book.author);
                     $('#editCover').val(book.cover);
                     $('#editHarga').val(book.harga);
-                    $('#editBookForm').data('old-title', title);
+                    $('#editBookForm').data('id', bookId); // Simpan ID untuk update
                     $('#editModal').modal('show');
                 });
 
                 // Menangani klik pada tombol Delete
                 $('.delete-book').on('click', function() {
-                    const title = $(this).data('title');
-                    $('#confirmDelete').data('title', title);
+                    const bookId = $(this).data('id');
+                    $('#confirmDelete').data('id', bookId);
                     $('#deleteConfirmModal').modal('show');
                 });
             },
@@ -82,10 +82,10 @@ $(document).ready(function() {
             cover: $('#editCover').val(),
             harga: $('#editHarga').val()
         };
-        const oldTitle = $('#editBookForm').data('old-title');
+        const bookId = $('#editBookForm').data('id');
         
         $.ajax({
-            url: `/api/books/${oldTitle}`,
+            url: `/api/books/${bookId}`,
             method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(updatedBook),
@@ -101,10 +101,10 @@ $(document).ready(function() {
     });
 
     $('#confirmDelete').on('click', function() {
-        const title = $(this).data('title');
+        const bookId = $(this).data('id');
         
         $.ajax({
-            url: `/api/books/${title}`,
+            url: `/api/books/${bookId}`,
             method: 'DELETE',
             success: function() {
                 fetchBooks();

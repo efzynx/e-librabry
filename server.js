@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB connection
 const mongoUri = 'mongodb+srv://efzyn:ALTRp6Dzp5eDIumw@db0.0xjiilk.mongodb.net/?retryWrites=true&w=majority&appName=db0';
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoUri);
 
 // Define a schema and model for books
 const bookSchema = new mongoose.Schema({
@@ -70,8 +70,15 @@ app.put('/api/books/:id', async (req, res) => {
 });
 
 app.delete('/api/books/:id', async (req, res) => {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send('Invalid book ID');
+    }
     try {
-        await Book.findByIdAndDelete(req.params.id);
+        const deletedBook = await Book.findByIdAndDelete(id);
+        if (!deletedBook) {
+            return res.status(404).send('Book not found');
+        }
         res.status(204).end();
     } catch (error) {
         console.error('Failed to delete book:', error);
