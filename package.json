@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "mkdir -p build && cp -r public/* build/"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,8 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.8.0",
-    "mongoose": "^8.5.2"
+    "mongoose": "^8.5.2",
+    "perpuson": "file:"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
