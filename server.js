@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -11,8 +12,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB connection
-const mongoUri = 'mongodb+srv://efzyn:ALTRp6Dzp5eDIumw@db0.0xjiilk.mongodb.net/?retryWrites=true&w=majority&appName=db0';
+// const mongoUri = 'mongodb+srv://efzyn:ALTRp6Dzp5eDIumw@db0.0xjiilk.mongodb.net/?retryWrites=true&w=majority&appName=db0';
+const mongoUri = process.env.MONGO_URI;
 mongoose.connect(mongoUri);
+
+mongoose.connection.on('error', err => {
+    console.error('Mongoose connection error:', err);
+  });
+  
+  mongoose.connection.once('open', () => {
+    console.log('Connected to MongoDB Atlas');
+  });
+
 
 // Define a schema and model for books
 const bookSchema = new mongoose.Schema({
