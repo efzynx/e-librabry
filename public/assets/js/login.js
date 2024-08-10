@@ -4,10 +4,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const loginInput = document.getElementById('loginEmailUsername').value;
     const password = document.getElementById('loginPassword').value;
 
+    const apiUrlVercel = 'https://e-library-tawny.vercel.app/login' || 'http://localhost:3000/login'
     // Menentukan apakah input adalah email atau username
     const isEmail = loginInput.includes('@'); // Cek apakah input berisi '@' untuk menganggapnya sebagai email
-    
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch(`${apiUrlVercel}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
