@@ -23,14 +23,10 @@
     "mdb-ui-kit": "^7.3.2",
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.2",
-<<<<<<< HEAD
-    "perpuson": "file:"
-=======
     "perpuson": "file:",
     "pg": "^8.12.0",
     "prisma": "^5.18.0",
     "uuid": "^10.0.0"
->>>>>>> develop
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
