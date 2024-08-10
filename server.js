@@ -29,10 +29,6 @@ mongoose.connection.on('error', err => {
     console.log('Connected to MongoDB Atlas');
   });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 // Define a schema and model for books
 const bookSchema = new mongoose.Schema({
     title: String,
