@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+     <link rel="stylesheet" href="custom/css/custom.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet">
+    <style>
+        .container-sm {
+            max-width: 45vh;
+            /* max-height: 60vh; */
+            background-color: #2F3645;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 2rem;
+        }
+        .tab-content {
+            margin-top: 20px;
+        }
+        .btn-floating {
+            border-radius: 50%;
+        }
+        /* Menambahkan pengaturan rendering teks */
+        body {
+            text-rendering: optimizeLegibility;
+        }
+        /* Menghilangkan efek blur jika ada */
+        .container-sm {
+            /* Pastikan tidak ada filter atau efek yang menyebabkan blur */
+            filter: none;
+            -webkit-filter: none;
+        }
+        /* Mengubah warna teks dan latar belakang pills aktif */
+        .custom-pills .nav-link {
+            color: #495057; /* Warna teks default */
+        }
+        .custom-pills .nav-link.active {
+            color: #ffffff; /* Warna teks saat aktif */
+            background-color: #007bff; /* Warna latar belakang saat aktif */
+        }
+        /* Mengubah warna teks dan latar belakang pills yang tidak aktif */
+        .custom-pills .nav-link:not(.active) {
+            color: #007bff; /* Warna teks saat tidak aktif */
+            background-color: #e9ecef; /* Warna latar belakang saat tidak aktif */
+        }
+        /* Efek saat hover */
+        .custom-pills .nav-link:hover {
+            color: #ffffff; /* Warna teks saat hover */
+            background-color: #0056b3; /* Warna latar belakang saat hover */
+        }
+        /* Efek saat hover untuk pills yang tidak aktif */
+        .custom-pills .nav-link:not(.active):hover {
+            background-color: #d6d6d6; /* Warna latar belakang saat hover untuk tidak aktif */
+        }
+        #loginEmail, #loginPassword, #loginUsername, #loginEmailUsername, #registerName, #registerUsername, #registerEmail, #registerPassword, #registerRepeatPassword, #dataListRoleLogin, #dataListRoleRegister, #datalist1 {
+          color: white;
+        }
+        p {
+          color: white;
+        }
+        .form-select.bg-transparent {
+            background-color: transparent !important; /* Mengubah background menjadi transparan */
+            border: 1px solid white; /* Opsional: Ubah warna border jika diinginkan */
+            color: #3f434b; /* Opsional: Ubah warna teks */
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center min-vh-100" style="background-color: #2F3645;">
+    <div class="container-sm">
+        <!-- Pills navs -->
+        <ul class="nav nav-pills custom-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tab-login" data-bs-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tab-register" data-bs-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+            </li>
+        </ul>
+        <!-- Pills navs -->
+
+        <!-- Pills content -->
+        <div class="tab-content">
+            <!-- Login Form -->
+            <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                <form id="loginForm">
+                    <div class="text-center mb-3">
+                        <p>Sign in with:</p>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-google"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-github"></i>
+                        </button>
+                    </div>
+
+                    <p class="text-center">or:</p>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="text" id="loginEmailUsername" class="form-control form-control-lg" minlength="4" required/>
+                        <label class="form-label" for="loginEmailUsername">Email or username</label>
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="password" id="loginPassword" class="form-control form-control-lg" minlength="4" required/>
+                        <label class="form-label" for="loginPassword">Password</label>
+                        <span id="togglePassword" class="position-absolute end-0 me-3 top-50 translate-middle-y">
+                            <i class="fas fa-eye" id="eyeIcon"></i>
+                        </span>
+                    </div>
+                      
+                      <!-- 2 column grid layout -->
+                      <div class="row mb-4">
+                          <div class="col-md-6 d-flex justify-content-center">
+                              <!-- Checkbox -->
+                              <div class="form-check mb-3 mb-md-0">
+                                  <input class="form-check-input" type="checkbox" id="loginCheck" checked />
+                                  <label class="form-check-label" for="loginCheck"><p> Remember me </p></label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <!-- Simple link -->
+                                <a href="#!">Forgot password?</a>
+                            </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                    <!-- Toast Notification -->
+        <div id="toast-container" class="position-fixed top-0 start-50 translate-middle-x">
+            <div id="loginToast" class="toast bg-success text-light" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-success">
+                    <strong class="me-auto bg-success text-light">Login Successful</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    You have logged in successfully. Redirecting to the main menu...
+                </div>
+            </div>
+        </div>
+
+        <div id="toast-container" class="position-fixed top-0 start-50 translate-middle-x">
+            <div id="loginToastFail" class="toast bg-warning text-light" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header bg-warning">
+                    <strong class="me-auto bg-warning text-light">Login Failed</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Please check your email or password
+                </div>
+            </div>
+        </div>
+
+        <!-- Register link -->
+        <div class="text-center">
+                        <p>Not a member? <a href="#pills-register" data-bs-toggle="pill">Register</a></p>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Register Form -->
+            <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                <form id="registerForm">
+                    <div class="text-center mb-3">
+                        <p>Sign up with:</p>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-google"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-floating mx-1">
+                            <i class="fab fa-github"></i>
+                        </button>
+                    </div>
+
+                    <p class="text-center">or:</p>
+
+                    <!-- Name input -->
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="text" id="registerName" class="form-control form-control-lg" minlength="4" required/>
+                        <label class="form-label" for="registerName">Name</label>
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="text" id="registerUsername" class="form-control form-control-lg" minlength="4" required/>
+                        <label class="form-label" for="registerUsername">Username</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="email" id="registerEmail" class="form-control form-control-lg" minlength="4" required/>
+                        <label class="form-label" for="registerEmail">Email</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4"data-mdb-input-init>
+                        <input type="password" id="registerPassword" class="form-control form-control-lg" minlength="8" required/>
+                        <label class="form-label" for="registerPassword">Password</label>
+                        <span id="toggleRegisterPassword" class="position-absolute end-0 me-3 top-50 translate-middle-y">
+                            <i class="fas fa-eye" id="eyeIconRegisterPassword"></i>
+                        </span>
+                    </div>
+
+                    <!-- Repeat Password input -->
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="password" id="registerRepeatPassword" class="form-control form-control-lg" minlength="8" required  />
+                        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                        <span id="toggleRegisterRepeatPassword" class="position-absolute end-0 me-3 top-50 translate-middle-y">
+                            <i class="fas fa-eye" id="eyeIconRegisterRepeatPassword"></i>
+                        </span>
+                    </div>
+
+                    <!-- Data List Role -->
+                    <div class="form-outline" data-mdb-input-init>
+                      <input class="form-control form-control-lg mb-4" list="datalistOptions" id="dataListRoleRegister" placeholder="Only Teacher, Student and Admin">
+                      <label for="dataListRoleRegister" class="form-label">Your Roles</label>
+                      <datalist id="datalistOptions">
+                            <option value="Teacher">
+                            <option value="Student">
+                            <option value="Admin">
+                          </datalist>          
+                      </div>       
+
+                    <!-- Checkbox -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <input class="form-check-input me-2" type="checkbox" id="registerCheck" checked />
+                        <label class="form-check-label" for="registerCheck">
+                           <p> I have read and agree to the terms </p>
+                        </label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-3">Sign up</button>
+                </form>
+            </div>
+        </div>
+        <!-- Pills content -->
+    </div>
+
+                <!-- Toast Notification -->
+                <div id="toast-container" class="position-fixed top-0 start-50 translate-middle-x">
+                    <div id="registerToast" class="toast bg-success text-light" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-success">
+                            <strong class="me-auto bg-success text-light">Login Successful</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            You have register in successfully.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="toast-container" class="position-fixed top-0 start-50 translate-middle-x">
+                    <div id="registerToastFail" class="toast bg-warning text-light" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-warning">
+                            <strong class="me-auto bg-warning text-light">Register Failed</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Your register is Failed!
+                        </div>
+                    </div>
+                </div>
+
+    <!-- Skrip JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/blurBg.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+    <script src="/assets/js/login.js"></script>
+    <script src="/assets/js/register.js"></script>
+    <script>
+        // Function to handle password toggle
+        function togglePassword(inputId, iconId) {
+            const passwordField = document.getElementById(inputId);
+            const eyeIcon = document.getElementById(iconId);
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Add event listeners
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            togglePassword('loginPassword', 'eyeIcon');
+        });
+        document.getElementById('toggleRegisterPassword').addEventListener('click', function () {
+            togglePassword('registerPassword', 'eyeIconRegisterPassword');
+        });
+
+        document.getElementById('toggleRegisterRepeatPassword').addEventListener('click', function () {
+            togglePassword('registerRepeatPassword', 'eyeIconRegisterRepeatPassword');
+        });
+    </script>
+</body>
+</html>
