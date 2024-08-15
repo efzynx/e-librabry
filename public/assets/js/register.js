@@ -6,8 +6,11 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     const email = document.getElementById('registerEmail').value;
     const password = document.getElementById('registerPassword').value;
     const role = document.getElementById('dataListRoleRegister').value;
+    
+    // pointing to your domain here
+    const apiUrlDomain = 'https://e-library.efzyn.my.id/register' || 'http://localhost:3000/register'
 
-    const response = await fetch('http://localhost:3000/register', {
+    const response = await fetch(`${apiUrlDomain}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
