@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
     // pointing to your domain here
     // const apiUrlDomain = 'your domain here' || 'http://localhost:3000/login'
-    const apiUrlDomain = $`{process.env.API_URL}/login` || 'http://localhost:3000/login'
+    const apiUrlDomain = '/login' || 'http://localhost:3000/login'
     // Menentukan apakah input adalah email atau username
     const isEmail = loginInput.includes('@'); // Cek apakah input berisi '@' untuk menganggapnya sebagai email
     const response = await fetch(`${apiUrlDomain}`, {
