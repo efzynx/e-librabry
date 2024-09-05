@@ -9,7 +9,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     
     // pointing to your domain here
     // const apiUrlDomain = 'your domain here' || 'http://localhost:3000/register'
-    const apiUrlDomain = process.env.API_URL || 'http://localhost:3000/login'
+    const apiUrlDomain = $`{process.env.API_URL}/register` || 'http://localhost:3000/register'
 
     const response = await fetch(`${apiUrlDomain}`, {
         method: 'POST',
