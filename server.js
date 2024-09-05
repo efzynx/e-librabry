@@ -49,6 +49,26 @@ const UserSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', UserSchema);
 
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+
+    if (!token) return res.status(403).send('Token is required');
+
+    jwt.verify(token, 'your-jwt-secret', (err, decoded) => {
+        if (err) return res.status(401).send('Invalid Token');
+        req.user = decoded; // Menyimpan data user ke request
+        next();
+    });
+};
+
+const isAdmin = async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    if (user.role !== 'admin' && user.role !== 'Admin') {
+        return res.status(403).send('Forbidden: Admins only');
+    }
+    next();
+};
+
 // Routing for HTML pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -74,7 +94,7 @@ app.get('/api/books', async (req, res) => {
     }
 });
 
-app.post('/api/books', async (req, res) => {
+app.post('/api/books', verifyToken, isAdmin, async (req, res) => {
     try {
         const newBook = new Book(req.body);
         await newBook.save();
@@ -95,7 +115,7 @@ app.put('/api/books/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/books/:id', async (req, res) => {
+app.delete('/api/books/:id', verifyToken, isAdmin, async (req, res) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send('Invalid book ID');
@@ -158,7 +178,7 @@ app.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
-        const token = jwt.sign({ id: user._id }, 'your-jwt-secret', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id, role: user.role }, 'your-jwt-secret', { expiresIn: '1h' });
         res.json({ token });
     } catch (error) {
         console.error('Server error:', error);
@@ -166,6 +186,17 @@ app.post('/login', async (req, res) => {
     }
 });
 
+
+
+// app.get('/books', verifyToken, isAdmin, async (req, res) => {
+//     const books = await Book.find();
+//     res.json(books);
+// });
+
+// app.get('/profile', verifyToken, async (req, res) => {
+//     const user = await User.findById(req.user.id);
+//     res.json(user);
+// });
   
 
 // Start server

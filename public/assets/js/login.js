@@ -5,7 +5,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const password = document.getElementById('loginPassword').value;
 
     // pointing to your domain here
-    const apiUrlDomain = 'https://e-library.efzyn.my.id/login' || 'http://localhost:3000/login'
+    // const apiUrlDomain = 'your domain here' || 'http://localhost:3000/login'
+    const apiUrlDomain = 'http://localhost:3000/login'
     // Menentukan apakah input adalah email atau username
     const isEmail = loginInput.includes('@'); // Cek apakah input berisi '@' untuk menganggapnya sebagai email
     const response = await fetch(`${apiUrlDomain}`, {

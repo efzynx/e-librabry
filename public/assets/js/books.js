@@ -5,7 +5,7 @@ $(document).ready(function() {
         success: function(data) {
             data.forEach(book => {
                 $('#book-list').append(`
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                         <div class="card h-100">
                             <img src="${book.cover}" class="card-img-top" alt="${book.title}">
                             <div class="card-body">
